@@ -29,7 +29,7 @@ RSpec.describe 'As a visitor', type: :feature do
       )
 
       ingredient2 = Ingredient.create!(
-        name: 'Dish1 ingredient2',
+        name: 'Dish1 ingredient 2',
         calories: 20
       )
 
@@ -54,6 +54,23 @@ RSpec.describe 'As a visitor', type: :feature do
 
       within "#dish_chef" do
         expect(page).to have_content('Chef Name: Chef Cool')
+      end
+    end
+
+    it 'shows me the ingredients in a dish' do
+      visit "/dish/#{@dish1.id}"
+
+      within "#dish_ingredients" do
+        expect(page).to have_content('Ingredients:')
+        expect(page).to have_content('Dish1 ingredient 1')
+        expect(page).to have_content('Dish1 ingredient 2')
+      end
+
+      visit "/dish/#{@dish2.id}"
+      
+      within "#dish_ingredients" do
+        expect(page).to have_content('Ingredients:')
+        expect(page).to have_content('Dish2 ingredient 1')
       end
     end
   end
