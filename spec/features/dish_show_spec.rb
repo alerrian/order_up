@@ -80,6 +80,12 @@ RSpec.describe 'As a visitor', type: :feature do
       within "#calories" do
         expect(page).to have_content('Dish Calorie Count: 30')
       end
+
+      visit "/dish/#{@dish2.id}"
+
+      within "#calories" do
+        expect(page).to have_content('Dish Calorie Count: 15')
+      end
     end
   end
 end
