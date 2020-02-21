@@ -1,3 +1,5 @@
 <h2>Ingredients: </h2>
 
-<%= @chef.used_ingredients %>
+<% @chef.dishes.each do |dish| %>
+  <%= dish.get_ingredients %>
+<% end %>

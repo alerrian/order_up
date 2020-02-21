@@ -4,4 +4,8 @@ class Ingredient < ApplicationRecord
 
   has_many :dish_ingredients
   has_many :dishes, through: :dish_ingredients
+
+  def self.uniq_ingredient_list
+    order(name: :asc).distinct.pluck(:name)
+  end
 end
